@@ -8,8 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- projects visual styles and nav are in styles.css; avoid page-local duplicates -->
 </head>
 <body class="page--dark">
 
@@ -41,9 +39,9 @@
       </div>
       <div class="nav-overlay__links">
         <a href="index.html#hero" class="nav-overlay__link">Home</a>
-        <a href="about.html" class="nav-overlay__link">Info</a>
+        <a href="works.html" class="nav-overlay__link">Works</a>
         <a href="journey.html" class="nav-overlay__link">Journey</a>
-        <a href="projects.html" class="nav-overlay__link">Projects</a>
+        <a href="about.html" class="nav-overlay__link">Info</a>
         <a href="contact.html" class="nav-overlay__link">Contact</a>
       </div>
       <div class="nav-overlay__meta">
@@ -64,124 +62,64 @@
       </div>
     </section>
 
-    <!-- projects-panels (styles live in styles.css) -->
-    <section class="projects-panels" aria-labelledby="projects-heading">
-
-      <section class="project-panel" data-panel="1" aria-labelledby="p1-title">
-        <div class="project-panel__bg" style="background-image:url('images/ADHD1.jpg');" aria-hidden="true"></div>
-        <div class="project-panel__overlay" aria-hidden="true"></div>
-
-        <div class="project-panel__content project-panel__content--left">
-          <div class="project-panel__inner">
-            <div class="project-panel__label">Selected work · 01</div>
-            <h2 class="project-panel__title" id="p1-title">Fusion Foodie</h2>
-            <p class="project-panel__text">
-              A bold, photography-led restaurant site built for an experimental fusion concept.
-              High-impact visuals, intuitive menu presentation and a smooth reservation flow.
+    <section class="works-section">
+      <div class="works-section__inner">
+        <div class="works-grid">
+          <!-- Murugan Foods -->
+          <article class="work-card fade-card">
+            <div class="work-card__label">01 · Restaurant Website</div>
+            <h2 class="work-card__title">Murugan Foods</h2>
+            <p class="work-card__role">Freelance · Frontend &amp; Web Design</p>
+            <p class="work-card__text">
+              A professional Indian restaurant website built to increase online visibility,
+              showcase the menu and drive table bookings with a clear, mobile-first layout.
             </p>
-            <a class="project-panel__link" href="https://fusionfoodie.ae" target="_blank" rel="noopener">Visit fusionfoodie.ae ↗</a>
-          </div>
-        </div>
-      </section>
+            <div class="work-card__tags">
+              <span>React</span><span>HTML/CSS</span><span>SEO</span><span>Restaurant</span>
+            </div>
+          </article>
 
-      <section class="project-panel" data-panel="2" aria-labelledby="p2-title">
-        <div class="project-panel__bg" style="background-image:url('images/Acute Chronic care.jpg');" aria-hidden="true"></div>
-        <div class="project-panel__overlay" aria-hidden="true"></div>
-
-        <div class="project-panel__content project-panel__content--right">
-          <div class="project-panel__inner">
-            <div class="project-panel__label">Selected work · 02</div>
-            <h2 class="project-panel__title" id="p2-title">TrueLife Home Health</h2>
-            <p class="project-panel__text">
-              A trusted online presence for a home-care provider emphasizing clarity, accessibility and clear contact flows for families.
+          <!-- TrueLife -->
+          <article class="work-card fade-card">
+            <div class="work-card__label">02 · Healthcare Platform</div>
+            <h2 class="work-card__title">TrueLife Home Health</h2>
+            <p class="work-card__role">Freelance · Frontend &amp; UX</p>
+            <p class="work-card__text">
+              A healthcare service platform for home-care and nursing services,
+              focused on trust, accessibility and clear CTAs for patients and families.
             </p>
-            <a class="project-panel__link" href="https://truelifehomehealth.ae" target="_blank" rel="noopener">Visit truelifehomehealth.ae ↗</a>
-          </div>
-        </div>
-      </section>
+            <div class="work-card__tags">
+              <span>React</span><span>Bootstrap</span><span>Firebase</span><span>Healthcare</span>
+            </div>
+          </article>
 
-      <section class="project-panel" data-panel="3" aria-labelledby="p3-title">
-        <div class="project-panel__bg" style="background-image:url('images/About us image.jpg');" aria-hidden="true"></div>
-        <div class="project-panel__overlay" aria-hidden="true"></div>
-
-        <div class="project-panel__content project-panel__content--left">
-          <div class="project-panel__inner">
-            <div class="project-panel__label">Selected work · 03</div>
-            <h2 class="project-panel__title" id="p3-title">Murugan Foods</h2>
-            <p class="project-panel__text">
-              A modern restaurant website focused on fast loading, clear menus, and a welcoming first impression that converts diners to bookings.
+          <!-- Fusion Foodie -->
+          <article class="work-card fade-card">
+            <div class="work-card__label">03 · Fusion Restaurant</div>
+            <h2 class="work-card__title">Fusion Foodie</h2>
+            <p class="work-card__role">Freelance · Full Website</p>
+            <p class="work-card__text">
+              A bold fusion cuisine site with reusable React components, smooth transitions and a
+              reservation flow backed by Firebase and automated deployments.
             </p>
-            <a class="project-panel__link" href="https://muruganfoods.com.au" target="_blank" rel="noopener">Visit muruganfoods.com.au ↗</a>
-          </div>
-        </div>
-      </section>
+            <div class="work-card__tags">
+              <span>React</span><span>Firebase</span><span>CI/CD</span>
+            </div>
+          </article>
 
-      <section class="project-panel" data-panel="4" aria-labelledby="p4-title">
-        <div class="project-panel__bg" style="background:linear-gradient(135deg,#375aeb 0%,#7de1c5 100%);" aria-hidden="true"></div>
-        <div class="project-panel__overlay" aria-hidden="true"></div>
-
-        <div class="project-panel__content project-panel__content--right">
-          <div class="project-panel__inner">
-            <div class="project-panel__label">Selected work · 04</div>
-            <h2 class="project-panel__title" id="p4-title">Wind Speed Forecasting (ML)</h2>
-            <p class="project-panel__text">
-              Research comparing deep-learning architectures for wind-speed forecasting; benchmarks against traditional time-series models with real-world datasets.
+          <!-- Wind Speed ML -->
+          <article class="work-card fade-card">
+            <div class="work-card__label">04 · ML Research</div>
+            <h2 class="work-card__title">Wind Speed Forecasting</h2>
+            <p class="work-card__role">Academic · IEEE Publication</p>
+            <p class="work-card__text">
+              Data-driven wind speed forecasting using deep learning architectures such as CNN,
+              VGG16, InceptionNet and AlexNet, outperforming traditional models like ARIMA and SVM.
             </p>
-            <a class="project-panel__link" href="https://ieeexplore.ieee.org/document/11005177" target="_blank" rel="noopener">View paper on IEEE ↗</a>
-          </div>
-        </div>
-      </section>
-
-    </section>
-
-    <!-- HOW I WORK? (process-like) -->
-    <section class="how-section" aria-labelledby="how-heading">
-      <div class="how-section__inner">
-        <div class="how-left">
-          <div class="how-label">How</div>
-          <div class="how-title" id="how-heading">I work — clear steps to ship</div>
-        </div>
-
-        <div class="how-cards" role="list">
-          <div class="how-card" role="listitem" data-step="1">
-            <div class="how-card__step">01</div>
-            <div class="how-card__body">
-              <div class="how-card__title">Requirement analysis</div>
-              <p class="how-card__text">Align goals, map user journeys and define measurable outcomes so every decision has direction.</p>
+            <div class="work-card__tags">
+              <span>ML</span><span>Python</span><span>Time Series</span>
             </div>
-          </div>
-
-          <div class="how-card" role="listitem" data-step="2">
-            <div class="how-card__step">02</div>
-            <div class="how-card__body">
-              <div class="how-card__title">Prototype & design</div>
-              <p class="how-card__text">Fast prototypes to validate flows, visual language and accessibility early — before heavy development.</p>
-            </div>
-          </div>
-
-          <div class="how-card" role="listitem" data-step="3">
-            <div class="how-card__step">03</div>
-            <div class="how-card__body">
-              <div class="how-card__title">Design proposal</div>
-              <p class="how-card__text">Actionable specs, component list and delivery phases so stakeholders can prioritise and approve quickly.</p>
-            </div>
-          </div>
-
-          <div class="how-card" role="listitem" data-step="4">
-            <div class="how-card__step">04</div>
-            <div class="how-card__body">
-              <div class="how-card__title">Planning & development</div>
-              <p class="how-card__text">Ship with tests, clean code and clear documentation — focusing on performance and maintainability.</p>
-            </div>
-          </div>
-
-          <div class="how-card" role="listitem" data-step="5">
-            <div class="how-card__step">05</div>
-            <div class="how-card__body">
-              <div class="how-card__title">Deployment</div>
-              <p class="how-card__text">Monitor, gather feedback and iterate — deliver continuous improvements with low risk.</p>
-            </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -223,29 +161,33 @@
               <a href="#hero" class="footer-bottom__link">Home</a>
               <a href="#projects" class="footer-bottom__link">Works</a>
               <a href="#journey" class="footer-bottom__link">Journey</a>
-              <a href="#process" class="footer-bottom__link">How I Work</a>
-              <a href="about.html" class="footer-bottom__link">Info</a>
-              <a href="contact.html" class="footer-bottom__link">Contact</a>
+              <a href="#process" class="footer-bottom__link">Process</a>
+              <a href="#footer-contact" class="footer-bottom__link">Contact</a>
             </div>
-
             <div class="footer-bottom__group">
-              <div class="footer-bottom__title">CONNECT</div>
-              <a href="mailto:hi@yuvanth.com" class="footer-bottom__link">Email</a>
-              <a href="https://www.linkedin.com/in/yuvanth" target="_blank" rel="noopener" class="footer-bottom__link">LinkedIn</a>
-              <a href="https://github.com/yuvanth" target="_blank" rel="noopener" class="footer-bottom__link">GitHub</a>
+              <div class="footer-bottom__title">SOCIAL</div>
+              <a href="#" class="footer-bottom__link">LinkedIn</a>
+              <a href="#" class="footer-bottom__link">GitHub</a>
+              <a href="#" class="footer-bottom__link">Instagram</a>
+            </div>
+            <div class="footer-bottom__group">
+              <div class="footer-bottom__title">CONTACT</div>
+              <a href="mailto:youremail@example.com" class="footer-bottom__link">
+                youremail@example.com
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- reuse same footer CTA from index.html -->
+    <!-- paste your existing footer-cta section here -->
+    <!-- ... -->
   </main>
 
-  <!-- =================== SCRIPTS =================== -->
-  <!-- GSAP + ScrollTrigger (required by main.js) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-  <!-- Custom JS -->
   <script src="main.js"></script>
- </body>
+</body>
 </html>
