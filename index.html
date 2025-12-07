@@ -21,79 +21,15 @@
 
   <!-- Main styles -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Local adjustments: process header alignment + auto-scrolling train -->
-  <style>
-    /* Process header — align label + title cleanly and responsively */
-    .process-section__header {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-    }
-    .process-section__label {
-      font-family: "League Gothic", sans-serif;
-      font-size: clamp(36px, 6vw, 72px);
-      line-height: 1;
-      letter-spacing: 2px;
-      margin: 0;
-      white-space: nowrap;
-    }
-    .process-section__title {
-      font-family: "League Gothic", sans-serif;
-      font-size: clamp(36px, 8vw, 96px);
-      margin: 0;
-      line-height: 1;
-      white-space: nowrap;
-    }
-    .process-section__copy {
-      width: 100%;
-      max-width: 55ch;
-      margin-top: 0.75rem;
-      color: #9aa0a6;
-    }
-
-    /* Horizontal "train" container */
-    .process-scroll-wrapper {
-      overflow: hidden;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .process-scroll-track {
-      display: flex;
-      align-items: stretch;
-      will-change: transform;
-    }
-    .process-card {
-      flex: 0 0 auto;
-      min-width: 260px;
-      margin-right: 1.5rem;
-      box-sizing: border-box;
-    }
-
-    /* small screens: stack header elements */
-    @media (max-width: 720px) {
-      .process-section__header { gap: 1rem; }
-      .process-section__label,
-      .process-section__title { font-size: clamp(28px, 10vw, 48px); }
-      .process-section__copy { max-width: 100%; }
-      .process-card { min-width: 220px; }
-    }
-
-    /* Respect user reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .process-scroll-track { transform: none !important; transition: none !important; animation: none !important; }
-    }
-  </style>
 </head>
 <body class="page--dark">
   <!-- =================== HEADER / TOGGLE NAV =================== -->
   <header class="site-header">
     <div class="site-header__inner">
-      <div class="site-header__logo">
+      <a href="index.html" class="site-header__logo">
         <span class="site-header__logo-mark">Y</span>
         <span class="site-header__logo-text">Yuvanth</span>
-      </div>
+      </a>
 
       <!-- Unified Toggle Button (Hamburger + Close) -->
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
@@ -107,8 +43,10 @@
 <nav class="nav-overlay" id="navOverlay" aria-hidden="true">
     <div class="nav-overlay__inner">
       <div class="nav-overlay__top">
-        <div class="site-header__logo nav-overlay__logo">
-        </div>
+        <a href="index.html" class="site-header__logo nav-overlay__logo">
+          <span class="site-header__logo-mark">Y</span>
+          <span class="site-header__logo-text">Yuvanth</span>
+        </a>
       </div>
 
       <div class="nav-overlay__links">

@@ -101,49 +101,95 @@ document.getElementById("scrollToProjects").addEventListener("click", () => {
 });
 
 // -----------------------------------------------------
-// PROJECT PANELS – PIN + OVERLAP + PARALLAX SCROLL
+// PROJECT PANELS – PIN + PARALLAX (desktop) / SIMPLE FADE (mobile)
 // -----------------------------------------------------
-gsap.utils.toArray(".project-panel").forEach((panel, i) => {
-  const bg = panel.querySelector(".project-panel__bg");
-  const content = panel.querySelector(".project-panel__content");
+ScrollTrigger.matchMedia({
+  // Desktop / tablet: full parallax + pin overlap
+  "(min-width: 768px)": function () {
+    gsap.utils.toArray(".project-panel").forEach((panel) => {
+      const bg = panel.querySelector(".project-panel__bg");
+      const content = panel.querySelector(".project-panel__content");
 
-  // Parallax zoom + move
-  gsap.fromTo(
-    bg,
-    { scale: 1.25, y: 0 },
-    {
-      scale: 1,
-      y: "-20vh",
-      ease: "none",
-      scrollTrigger: {
-        trigger: panel,
-        scrub: true,
-        start: "top bottom",
-        end: "bottom top",
+      if (bg) {
+        gsap.fromTo(
+          bg,
+          { scale: 1.25, y: 0 },
+          {
+            scale: 1,
+            y: "-20vh",
+            ease: "none",
+            scrollTrigger: {
+              trigger: panel,
+              scrub: true,
+              start: "top bottom",
+              end: "bottom top",
+            },
+          }
+        );
       }
-    }
-  );
 
-  // Content fade/slide in
-  gsap.from(content, {
-    opacity: 0,
-    y: 80,
-    duration: 1,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: panel,
-      start: "top 75%",
-      toggleActions: "play none none reverse",
-    }
-  });
+      if (content) {
+        gsap.from(content, {
+          opacity: 0,
+          y: 80,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: panel,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
 
-  // Pin each panel for overlap effect
-  ScrollTrigger.create({
-    trigger: panel,
-    start: "top top",
-    pin: true,
-    pinSpacing: false
-  });
+      ScrollTrigger.create({
+        trigger: panel,
+        start: "top top",
+        pin: true,
+        pinSpacing: false,
+      });
+    });
+  },
+
+  // Mobile: no pinning, lighter parallax only (or just fade)
+  "(max-width: 767px)": function () {
+    gsap.utils.toArray(".project-panel").forEach((panel) => {
+      const bg = panel.querySelector(".project-panel__bg");
+      const content = panel.querySelector(".project-panel__content");
+
+      if (bg) {
+        gsap.fromTo(
+          bg,
+          { scale: 1.15, y: 0 },
+          {
+            scale: 1,
+            y: "-10vh",
+            ease: "none",
+            scrollTrigger: {
+              trigger: panel,
+              scrub: true,
+              start: "top bottom",
+              end: "bottom top",
+            },
+          }
+        );
+      }
+
+      if (content) {
+        gsap.from(content, {
+          opacity: 0,
+          y: 60,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: panel,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    });
+  },
 });
 
 // -----------------------------------------------------
