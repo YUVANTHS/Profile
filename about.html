@@ -8,17 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* ensure overlay toggles work on this page too */
-    .nav-overlay { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .28s ease, visibility .28s ease; }
-    .nav-overlay.open { visibility: visible; opacity: 1; pointer-events: auto; }
-    .menu-toggle.is-open .line1 { transform: translateY(6px) rotate(45deg); }
-    .menu-toggle.is-open .line2 { transform: translateY(-6px) rotate(-45deg); }
-
-    /* page-hero reveal (keeps same transition style) */
-    .page-hero { opacity: 0; transform: translateY(12px); transition: opacity .56s ease, transform .56s cubic-bezier(.2,.9,.2,1); }
-    .page-hero.is-visible { opacity: 1; transform: none; }
-  </style>
+  <!-- rely on shared styles.css + main.js for nav and hero reveal -->
 </head>
 <body class="page--dark">
 
@@ -233,35 +223,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="main.js"></script>
-  <script>
-    (function () {
-      // Nav toggle
-      const toggle = document.getElementById('menuToggle');
-      const overlay = document.getElementById('navOverlay');
-      if (toggle && overlay) {
-        function setOpen(open) {
-          overlay.classList.toggle('open', open);
-          toggle.classList.toggle('is-open', open);
-          overlay.setAttribute('aria-hidden', String(!open));
-        }
-        toggle.addEventListener('click', () => setOpen(!overlay.classList.contains('open')));
-        overlay.querySelectorAll('.nav-overlay__link').forEach(a => a.addEventListener('click', () => setOpen(false)));
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
-      }
-
-      // page-hero reveal
-      const hero = document.querySelector('.page-hero');
-      if (hero) {
-        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          hero.classList.add('is-visible');
-        } else {
-          const io = new IntersectionObserver((entries, obs) => {
-            entries.forEach(en => { if (en.isIntersecting) { hero.classList.add('is-visible'); obs.disconnect(); } });
-          }, { threshold: 0.05 });
-          io.observe(hero);
-        }
-      }
-    })();
-  </script>
+  <!-- shared behavior now comes from main.js -->
 </body>
 </html>
