@@ -1,0 +1,1386 @@
+/* =========================
+   GLOBAL + VARIABLES
+   ========================= */
+
+:root {
+  --bg-dark: #05070c;
+  --bg-darker: #020308;
+  --bg-light: #e3e4ea;
+  --bg-light-alt: #d9dadf;
+  --text-main: #f5f5f7;
+  --text-muted: #9b9ca5;
+  --text-dark: #11131b;
+  --accent: #ff4b4b;
+  --accent-soft: #ff7a7a;
+  --border-soft: #20222c;
+  --panel-overlay: rgba(0, 0, 0, 0.6);
+  --radius-lg: 999px;
+  --transition-fast: 0.25s ease-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
+}
+
+body.page--dark {
+  font-family: "IBM Plex Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   HEADER + TOGGLE NAV
+   ========================= */
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  padding: 1.5rem 4.5vw 0.75rem;
+  pointer-events: none;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.site-header__logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  background-color: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.site-header__logo-text {
+  color: var(--text-main);
+}
+
+/* Burger button */
+
+.menu-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: rgba(5, 7, 12, 0.7);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 100;
+}
+
+.menu-toggle__line {
+  width: 1.2rem;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 999px;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.menu-toggle:hover {
+  background: rgba(5, 7, 12, 0.9);
+  border-color: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+/* Close icon variation */
+
+.menu-toggle--close .menu-toggle__line:first-child {
+  transform: translateY(2px) rotate(45deg);
+}
+
+.menu-toggle--close .menu-toggle__line:last-child {
+  transform: translateY(-2px) rotate(-45deg);
+}
+
+/* =========================
+   NAV OVERLAY
+   ========================= */
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 5, 12, 0.98);
+  color: var(--text-main);
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease-out, visibility 0.35s ease-out;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-overlay--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-overlay__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.25rem 4.5vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-overlay__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-overlay__logo {
+  transform: scale(1.02);
+}
+
+.nav-overlay__links {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.nav-overlay__link {
+  font-size: clamp(2.5rem, 4vw, 3.1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-family: "League Gothic", system-ui, sans-serif;
+  position: relative;
+  display: inline-block;
+}
+
+.nav-overlay__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.1em;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.25s ease-out;
+}
+
+.nav-overlay__link:hover::after {
+  width: 100%;
+}
+
+.nav-overlay__meta {
+  margin-top: auto;
+  max-width: 420px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+  min-height: 100vh;
+  padding: 7rem 4.5vw 5rem;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero__intro {
+  margin-bottom: 1.5rem;
+}
+
+.hero__small-label {
+  font-size: 0.95rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hero__title {
+  margin: 0;
+  font-family: "League Gothic", system-ui, sans-serif;
+  line-height: 0.85;
+  text-transform: uppercase;
+  font-size: clamp(4.5rem, 13vw, 7.4rem);
+}
+
+.hero__title-line {
+  display: block;
+  transform-origin: left center;
+}
+
+.hero__title-line--1 {
+  letter-spacing: 0.12em;
+}
+
+.hero__title-line--2 {
+  letter-spacing: 0.08em;
+}
+
+.hero__subtext {
+  margin-top: 2rem;
+  max-width: 420px;
+  font-size: 0.96rem;
+  color: var(--text-muted);
+}
+
+.hero__see-work {
+  margin-top: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.hero__see-work-btn {
+  padding: 0.85rem 2.6rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at 30% 0, #ff6b6b, #ff4b4b);
+  color: #fff;
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.6);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast),
+    background 0.3s ease-out;
+}
+
+.hero__see-work-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.8);
+}
+
+.hero__see-work-line {
+  width: 1px;
+  height: 4.5rem;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero__see-work-line-inner {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 0%;
+  background-color: var(--accent);
+}
+
+/* =========================
+   WORKS HEADER
+   ========================= */
+
+.works-header {
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6rem;
+  background: var(--bg-dark);
+}
+
+.works-header__title {
+  font-family: "League Gothic", sans-serif;
+  font-size: clamp(4.5rem, 14vw, 9rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-main);
+  margin: 0;
+  text-align: center;
+}
+
+/* =========================
+   PROJECT PANELS
+   ========================= */
+
+.projects {
+  position: relative;
+}
+
+/* Each panel fills the viewport and slightly overlaps the previous one visually */
+.project-panel {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 4.5vw;
+  box-shadow: 0 -32px 60px rgba(0, 0, 0, 0.7);
+}
+
+.project-panel + .project-panel {
+  margin-top: -12vh; /* visual overlap */
+}
+
+/* Background image */
+
+.project-panel__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.1);
+  filter: grayscale(0.25);
+}
+
+.project-panel__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 0, rgba(0, 0, 0, 0.75), #05070c);
+  mix-blend-mode: multiply;
+}
+
+/* Content */
+
+.project-panel__content {
+  position: relative;
+  z-index: 2;
+  max-width: 460px;
+  color: #fff;
+}
+
+.project-panel__content--left {
+  margin-left: 4vw;
+}
+
+.project-panel__content--right {
+  margin-left: auto;
+  margin-right: 4vw;
+}
+
+.project-panel__content--center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.project-panel__label {
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.project-panel__title {
+  font-family: "League Gothic", system-ui, sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  letter-spacing: 0.06em;
+  margin: 0 0 1rem;
+}
+
+.project-panel__text {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 1.6rem;
+}
+
+.project-panel__link {
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(5, 5, 8, 0.35);
+  backdrop-filter: blur(8px);
+  transition: background var(--transition-fast),
+    transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.project-panel__link span {
+  transform: translateY(1px);
+}
+
+.project-panel__link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 25px rgba(0, 0, 0, 0.65);
+  transform: translateY(-2px);
+}
+
+/* =========================
+   EXPERIENCE SECTION
+   ========================= */
+
+.experience-section {
+  padding: 7rem 4.5vw 6rem;
+  background: var(--bg-dark);
+}
+
+.experience-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.experience-title {
+  font-family: "League Gothic";
+  text-transform: uppercase;
+  font-size: clamp(3.5rem, 10vw, 5rem);
+  margin-bottom: 3rem;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.experience-card {
+  background: #0b0d14;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45);
+}
+
+.exp-role {
+  font-family: "League Gothic";
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  margin: 0 0 0.5rem;
+}
+
+.exp-company {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.exp-duration {
+  color: var(--accent-soft);
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+}
+
+/* =========================
+   DESIGN PROCESS
+   ========================= */
+
+.process-section {
+  padding: 8rem 4.5vw 7rem;
+  background-color: var(--bg-darker);
+  position: relative;
+}
+
+.process-section__inner {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.process-section__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+  column-gap: 3rem;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+
+.process-section__label {
+  font-size: clamp(2.8rem, 4.6vw, 3.6rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: "League Gothic", system-ui, sans-serif;
+}
+
+.process-section__title {
+  font-size: clamp(3.6rem, 7vw, 4.8rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: "League Gothic", system-ui, sans-serif;
+  margin: 0;
+}
+
+.process-section__copy {
+  grid-column: 2 / 3;
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  max-width: 410px;
+}
+
+/* Horizontal scrolling cards wrapper */
+
+.process-scroll-wrapper {
+  margin-top: 3rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.process-scroll-track {
+  display: flex;
+  gap: 2.5rem;
+  will-change: transform;
+}
+
+/* Individual card */
+
+.process-card {
+  min-width: min(280px, 70vw);
+  max-width: 290px;
+  background: #10121b;
+  border-radius: 18px;
+  padding: 1.7rem 1.6rem 1.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.process-card__step {
+  font-size: 0.85rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+
+.process-card__title {
+  margin: 0;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-family: "League Gothic", system-ui, sans-serif;
+}
+
+.process-card__text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.process-card__tags {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.process-card__tags span {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* =========================
+   FOOTER CTA
+   ========================= */
+
+.footer-cta {
+  background: var(--bg-light-alt);
+  color: var(--text-dark);
+  padding: 7rem 4.5vw 4.5rem;
+}
+
+.footer-cta__inner {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.footer-cta__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-cta__label {
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footer-cta__availability {
+  font-size: 0.9rem;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.footer-cta__availability-meta {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.footer-cta__headline-wrap {
+  overflow: hidden;
+}
+
+.footer-cta__headline {
+  margin: 0 0 3rem;
+}
+
+.footer-cta__headline-main {
+  font-family: "League Gothic", system-ui, sans-serif;
+  text-transform: uppercase;
+  font-size: clamp(4.2rem, 10vw, 6rem);
+  letter-spacing: 0.08em;
+  display: inline-block;
+}
+
+.footer-cta__divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.16);
+  margin-bottom: 2.5rem;
+}
+
+/* Bottom footer content */
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+}
+
+.footer-bottom__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer-bottom__brand {
+  font-family: "League Gothic", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 1.2rem;
+}
+
+.footer-bottom__made {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+}
+
+.footer-bottom__heart {
+  color: #e53935;
+}
+
+.footer-bottom__right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.footer-bottom__group {
+  min-width: 120px;
+}
+
+.footer-bottom__title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 0.85rem;
+}
+
+.footer-bottom__link {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+  opacity: 0.85;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.footer-bottom__link:hover {
+  opacity: 1;
+  transform: translateX(1px);
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+  .hero {
+    align-items: center;
+    padding-top: 6.5rem;
+  }
+
+  .hero__subtext {
+    margin-top: 1.5rem;
+  }
+
+  .project-panel {
+    padding-inline: 6vw;
+  }
+
+  .project-panel__content--left,
+  .project-panel__content--right {
+    margin: 0;
+  }
+
+  .process-section__header {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+
+  .process-section__copy {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+  .footer-bottom__right {
+    gap: 2rem;
+  }
+
+/* =========================
+   MOBILE STYLES
+   ========================= */
+@media (max-width: 768px) {
+  .site-header {
+    padding: 1rem 5vw;
+  }
+  
+  .hero {
+    padding: 6rem 5vw 4rem;
+  }
+  
+  .hero__title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .hero__subtext p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .project-panel {
+    height: 100vh !important;
+  }
+  
+  .project-panel__content {
+    padding: 2rem;
+    max-width: 100%;
+  }
+  
+  .project-panel__title {
+    font-size: 2rem;
+  }
+  
+  .nav-overlay__links {
+    margin-top: 3rem;
+  }
+  
+  .nav-overlay__link {
+    font-size: 2rem !important;
+  }
+  
+  .experience-card {
+    padding: 1.5rem;
+  }
+  
+  .footer-cta {
+    padding: 3rem 5vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 2rem;
+  }
+  
+  .nav-overlay__link {
+    font-size: 1.75rem !important;
+  }
+  
+  .project-panel__title {
+    font-size: 1.75rem;
+  }
+}
+
+}
+
+/* Hero section mobile styles */
+@media (max-width: 768px) {
+  .hero {
+    padding: 6rem 5vw 4rem;
+  }
+
+  .hero__see-work {
+    margin-top: 2.5rem;
+  }
+
+  .project-panel + .project-panel {
+    margin-top: -6vh;
+  }
+  .project-panel {
+    align-items: flex-end;
+    padding-bottom: 4rem;
+  }
+
+  .project-panel__content--center {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  /* Fix for navigation overlay on mobile */
+  .nav-overlay {
+    padding: 2rem 5vw;
+  }
+
+  .nav-overlay__links {
+    margin-top: 3rem !important;
+  }
+
+  .nav-overlay__link {
+    font-size: 2rem !important;
+    margin: 0.5rem 0;
+  }
+
+  /* Prevent body scroll when menu is open */
+  body.nav-open {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .process-section {
+    padding-inline: 5vw;
+  }
+
+  .footer-cta {
+    padding-inline: 5vw;
+  }
+
+  .footer-cta__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-cta__availability {
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: clamp(3.5rem, 15vw, 4.4rem);
+  }
+
+  .hero__subtext {
+    max-width: 100%;
+  }
+
+  .hero__see-work {
+    gap: 1.2rem;
+  }
+
+  .footer-bottom__right {
+    flex-direction: column;
+  }
+}
+/* FIXED TOGGLE ICON */
+.menu-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.35rem;
+  background: rgba(5, 7, 12, 0.7);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 100;
+}
+
+.menu-toggle__line {
+  width: 1.3rem;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 999px;
+  transition: 0.35s ease;
+}
+
+/* ACTIVE STATE -> TURN INTO 'X' */
+.menu-toggle.active .line1 {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menu-toggle.active .line2 {
+  transform: translateY(-4px) rotate(-45deg);
+}
+/* =========================
+   PAGE HERO (subpages)
+   ========================= */
+.page-hero {
+  min-height: 60vh;
+  padding: 7rem 4.5vw 4rem;
+  background: var(--bg-dark);
+  display: flex;
+  align-items: flex-end;
+}
+
+.page-hero__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page-hero__eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.page-hero__title {
+  font-family: "League Gothic", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: clamp(3.8rem, 10vw, 5.6rem);
+  margin: 0 0 1.2rem;
+}
+
+.page-hero__text {
+  max-width: 520px;
+  font-size: 0.98rem;
+  color: var(--text-muted);
+}
+
+/* =========================
+   WORKS PAGE
+   ========================= */
+.works-section {
+  padding: 4rem 4.5vw 6rem;
+  background: var(--bg-darker);
+}
+
+.works-section__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.2rem;
+  margin-top: 2.5rem;
+}
+
+.work-card {
+  background: #10121b;
+  border-radius: 18px;
+  padding: 1.8rem 1.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.55);
+}
+
+.work-card__label {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 0.6rem;
+}
+
+.work-card__title {
+  font-family: "League Gothic";
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1.7rem;
+  margin: 0 0 0.6rem;
+}
+
+.work-card__role {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+}
+
+.work-card__text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.3rem;
+}
+
+.work-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.work-card__tags span {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* =========================
+   INFO PAGE
+   ========================= */
+.info-section {
+  padding: 4rem 4.5vw 6rem;
+  background: var(--bg-darker);
+}
+
+.info-section__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+  gap: 3rem;
+}
+
+.info-about {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.info-about p + p {
+  margin-top: 1.2rem;
+}
+
+.info-meta-title {
+  font-family: "League Gothic";
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.info-meta-block {
+  margin-bottom: 1.5rem;
+}
+
+.info-meta-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.info-meta-list li + li {
+  margin-top: 0.4rem;
+}
+
+/* Skills grid */
+.skills-section {
+  padding: 3rem 4.5vw 5rem;
+  background: var(--bg-dark);
+}
+
+.skills-section__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.skills-card {
+  background: #0b0d14;
+  border-radius: 16px;
+  padding: 1.7rem 1.6rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.skills-card__title {
+  font-family: "League Gothic";
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.skills-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.skills-card__list li + li {
+  margin-top: 0.3rem;
+}
+
+/* Education */
+.education-section {
+  padding: 3rem 4.5vw 5rem;
+  background: var(--bg-darker);
+}
+
+.educ-grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.educ-card {
+  background: #10121b;
+  border-radius: 16px;
+  padding: 1.8rem 1.6rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.educ-card__degree {
+  font-family: "League Gothic";
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+.educ-card__inst {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.educ-card__years {
+  font-size: 0.85rem;
+  color: var(--accent-soft);
+  margin-top: 0.4rem;
+}
+
+/* =========================
+   CONTACT PAGE
+   ========================= */
+.contact-section {
+  padding: 4rem 4.5vw 6rem;
+  background: var(--bg-darker);
+}
+
+.contact-section__inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contact-intro {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+.contact-card {
+  background: #10121b;
+  border-radius: 18px;
+  padding: 1.8rem 1.6rem;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.contact-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 0.6rem;
+}
+
+.contact-email {
+  font-size: 1rem;
+  word-break: break-all;
+}
+
+.contact-email a {
+  text-decoration: underline;
+}
+
+.contact-social-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.contact-social-list li + li {
+  margin-top: 0.4rem;
+}
+
+/* Simple form styling (no backend) */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.contact-form label {
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: #05070c;
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form button {
+  margin-top: 0.4rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: radial-gradient(circle at 30% 0, #ff6b6b, #ff4b4b);
+  color: #fff;
+  font-size: 0.86rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE tweaks
+   ========================= */
+@media (max-width: 900px) {
+  .info-section__inner {
+    grid-template-columns: 1fr;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-hero {
+    padding-inline: 5vw;
+  }
+  .works-section,
+  .info-section,
+  .skills-section,
+  .education-section,
+  .contact-section {
+    padding-inline: 5vw;
+  }
+}

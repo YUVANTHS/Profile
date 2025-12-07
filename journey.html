@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Journey – Yuvanth</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .nav-overlay { visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .28s ease, visibility .28s ease; }
+    .nav-overlay.open { visibility: visible; opacity: 1; pointer-events: auto; }
+    .menu-toggle.is-open .line1 { transform: translateY(6px) rotate(45deg); }
+    .menu-toggle.is-open .line2 { transform: translateY(-6px) rotate(-45deg); }
+
+    .page-hero { opacity: 0; transform: translateY(12px); transition: opacity .56s ease, transform .56s cubic-bezier(.2,.9,.2,1); }
+    .page-hero.is-visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body class="page--dark">
+
+  <!-- common header + nav -->
+  <!-- (same as works.html above) -->
+  <!-- ... -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <span class="site-header__logo-mark">Y</span>
+        <span class="site-header__logo-text">Yuvanth</span>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <span class="menu-toggle__line line1"></span>
+        <span class="menu-toggle__line line2"></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <div class="nav-overlay__inner">
+      <div class="nav-overlay__top">
+        <div class="site-header__logo nav-overlay__logo">
+          <span class="site-header__logo-mark">Y</span>
+          <span class="site-header__logo-text">Yuvanth</span>
+        </div>
+      </div>
+      <div class="nav-overlay__links">
+        <a href="index.html#hero" class="nav-overlay__link">Home</a>
+        <a href="about.html" class="nav-overlay__link">Info</a>
+        <a href="journey.html" class="nav-overlay__link">Journey</a>
+        <a href="projects.html" class="nav-overlay__link">Projects</a>
+        <a href="contact.html" class="nav-overlay__link">Contact</a>
+      </div>
+      <div class="nav-overlay__meta">
+        <p>Web developer &amp; product thinker crafting clean, focused experiences.</p>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero__inner">
+        <div class="page-hero__eyebrow">Path</div>
+        <h1 class="page-hero__title">MY JOURNEY</h1>
+        <p class="page-hero__text">
+          From web development internships to MDM engineering and enterprise integrations –
+          this is how I’ve grown as a developer and product-minded engineer.
+        </p>
+      </div>
+    </section>
+
+    <section class="experience-section">
+      <div class="experience-inner">
+        <div class="experience-grid">
+          <div class="experience-card fade-card">
+            <h3 class="exp-role">Associate System Engineer</h3>
+            <p class="exp-company">ISNIA Technologies • ManageEngine SDP Developer</p>
+            <p class="exp-duration">2025 — Present</p>
+          </div>
+
+          <div class="experience-card fade-card">
+            <h3 class="exp-role">MDM Integration Developer Intern</h3>
+            <p class="exp-company">ISNIA Technologies • STIBO STEP / Master Data Management</p>
+            <p class="exp-duration">Dec 2024 — Mar 2025</p>
+          </div>
+
+          <div class="experience-card fade-card">
+            <h3 class="exp-role">Web Developer Intern</h3>
+            <p class="exp-company">Nexus • Web development &amp; collaboration</p>
+            <p class="exp-duration">Dec 2023 — Mar 2024</p>
+          </div>
+
+          <div class="experience-card fade-card">
+            <h3 class="exp-role">Freelance Web Developer</h3>
+            <p class="exp-company">Fusion Foodie · Truelife Home Health · Murugan Foods</p>
+            <p class="exp-duration">2025 — Ongoing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER / CTA (DROP ME A LINE) ========== -->
+    <section class="footer-cta" id="footer-contact">
+      <div class="footer-cta__inner">
+        <div class="footer-cta__top">
+          <div class="footer-cta__label">READY TO WORK TOGETHER?</div>
+          <div class="footer-cta__availability">
+            <span class="footer-cta__availability-label">
+              AVAILABLE FOR NEW PROJECTS
+            </span>
+            <span class="footer-cta__availability-meta">
+              From <strong>2025</strong> onwards
+            </span>
+          </div>
+        </div>
+
+        <div class="footer-cta__headline-wrap">
+          <h2 class="footer-cta__headline">
+            <span class="footer-cta__headline-main">DROP ME A LINE</span>
+          </h2>
+        </div>
+
+        <div class="footer-cta__divider"></div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom__left">
+            <div class="footer-bottom__brand">YUVANTH</div>
+            <p class="footer-bottom__made">
+              Crafted in India with <span class="footer-bottom__heart">♥</span>
+            </p>
+          </div>
+
+          <div class="footer-bottom__right">
+            <div class="footer-bottom__group">
+              <div class="footer-bottom__title">SITEMAP</div>
+              <a href="#hero" class="footer-bottom__link">Home</a>
+              <a href="#projects" class="footer-bottom__link">Works</a>
+              <a href="#journey" class="footer-bottom__link">Journey</a>
+              <a href="#process" class="footer-bottom__link">Process</a>
+              <a href="#footer-contact" class="footer-bottom__link">Contact</a>
+            </div>
+            <div class="footer-bottom__group">
+              <div class="footer-bottom__title">SOCIAL</div>
+              <a href="#" class="footer-bottom__link">LinkedIn</a>
+              <a href="#" class="footer-bottom__link">GitHub</a>
+              <a href="#" class="footer-bottom__link">Instagram</a>
+            </div>
+            <div class="footer-bottom__group">
+              <div class="footer-bottom__title">CONTACT</div>
+              <a href="mailto:youremail@example.com" class="footer-bottom__link">
+                youremail@example.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+  <script>
+    (function () {
+      const toggle = document.getElementById('menuToggle');
+      const overlay = document.getElementById('navOverlay');
+      if (toggle && overlay) {
+        function setOpen(open) {
+          overlay.classList.toggle('open', open);
+          toggle.classList.toggle('is-open', open);
+          overlay.setAttribute('aria-hidden', String(!open));
+        }
+        toggle.addEventListener('click', () => setOpen(!overlay.classList.contains('open')));
+        overlay.querySelectorAll('.nav-overlay__link').forEach(a => a.addEventListener('click', () => setOpen(false)));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+      }
+
+      const hero = document.querySelector('.page-hero');
+      if (hero) {
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) hero.classList.add('is-visible');
+        else {
+          const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(en => { if (en.isIntersecting) { hero.classList.add('is-visible'); obs.disconnect(); } });
+          }, { threshold: 0.05 });
+          io.observe(hero);
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

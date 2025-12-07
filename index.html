@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yuvanth – Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=League+Gothic&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Icons (optional, used in footer/social) -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+  />
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Local adjustments: process header alignment + auto-scrolling train -->
+  <style>
+    /* Process header — align label + title cleanly and responsively */
+    .process-section__header {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .process-section__label {
+      font-family: "League Gothic", sans-serif;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: 2px;
+      margin: 0;
+      white-space: nowrap;
+    }
+    .process-section__title {
+      font-family: "League Gothic", sans-serif;
+      font-size: clamp(36px, 8vw, 96px);
+      margin: 0;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .process-section__copy {
+      width: 100%;
+      max-width: 55ch;
+      margin-top: 0.75rem;
+      color: #9aa0a6;
+    }
+
+    /* Horizontal "train" container */
+    .process-scroll-wrapper {
+      overflow: hidden;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .process-scroll-track {
+      display: flex;
+      align-items: stretch;
+      will-change: transform;
+    }
+    .process-card {
+      flex: 0 0 auto;
+      min-width: 260px;
+      margin-right: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    /* small screens: stack header elements */
+    @media (max-width: 720px) {
+      .process-section__header { gap: 1rem; }
+      .process-section__label,
+      .process-section__title { font-size: clamp(28px, 10vw, 48px); }
+      .process-section__copy { max-width: 100%; }
+      .process-card { min-width: 220px; }
+    }
+
+    /* Respect user reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .process-scroll-track { transform: none !important; transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body class="page--dark">
+  <!-- =================== HEADER / TOGGLE NAV =================== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__logo">
+        <span class="site-header__logo-mark">Y</span>
+        <span class="site-header__logo-text">Yuvanth</span>
+      </div>
+
+      <!-- Unified Toggle Button (Hamburger + Close) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <span class="menu-toggle__line line1"></span>
+        <span class="menu-toggle__line line2"></span>
+      </button>
+    </div>
+</header>
+
+<!-- Fullscreen nav overlay -->
+<nav class="nav-overlay" id="navOverlay" aria-hidden="true">
+    <div class="nav-overlay__inner">
+      <div class="nav-overlay__top">
+        <div class="site-header__logo nav-overlay__logo">
+        </div>
+      </div>
+
+      <div class="nav-overlay__links">
+        <a href="index.html#hero" class="nav-overlay__link">Home</a>
+        <a href="about.html" class="nav-overlay__link">Info</a>
+        <a href="journey.html" class="nav-overlay__link">Journey</a>
+        <a href="projects.html" class="nav-overlay__link">Projects</a>
+        <a href="contact.html" class="nav-overlay__link">Contact</a>
+      </div>
+
+      <div class="nav-overlay__meta">
+        <p>Web developer & product thinker crafting clean, focused experiences.</p>
+      </div>
+    </div>
+</nav>
+
+
+  <!-- =================== MAIN =================== -->
+  <main>
+    <!-- ========== HERO (FULLSCREEN NAME ONLY) ========== -->
+    <section class="hero hero--full" id="hero">
+      <div class="hero__inner">
+        <div class="hero__intro">
+          <span class="hero__small-label">HI!</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span class="hero__title-line hero__title-line--1">I'M YUVANTH</span>
+          <span class="hero__title-line hero__title-line--2">WEB DEVELOPER</span>
+        </h1>
+
+        <div class="hero__subtext">
+          <p>
+            I design and build clean, modern websites and product experiences –
+            from restaurant brands to healthcare and data-driven tools.
+          </p>
+        </div>
+
+        <div class="hero__see-work">
+          <button class="hero__see-work-btn" id="scrollToProjects">
+            SEE MY WORK
+          </button>
+          <div class="hero__see-work-line">
+            <span class="hero__see-work-line-inner"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MY WORKS HEADER ========== -->
+    <section class="works-header">
+      <h2 class="works-header__title">MY WORKS</h2>
+    </section>
+
+    <!-- ========== PROJECTS – FULLSCREEN OVERLAP PANELS ========== -->
+    <section class="projects" id="projects">
+      <!-- Panel 1: left text -->
+      <section class="project-panel project-panel--left" data-panel="1">
+        <div
+          class="project-panel__bg"
+          style="background-image: url('images/About us image.jpg');"
+        ></div>
+        <div class="project-panel__overlay"></div>
+
+        <div class="project-panel__content project-panel__content--left">
+          <div class="project-panel__label">Selected work · 01</div>
+          <h2 class="project-panel__title">Murugan Foods</h2>
+          <p class="project-panel__text">
+            A modern restaurant website for an Indian brand in Australia –
+            focused on clear menu presentation, bookings and a warm first impression.
+          </p>
+          <a
+            href="https://muruganfoods.com.au"
+            target="_blank"
+            class="project-panel__link"
+          >
+            Visit site <span>↗</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Panel 2: right text -->
+      <section class="project-panel project-panel--right" data-panel="2">
+        <div
+          class="project-panel__bg"
+          style="background-image: url('images/Acute Chronic care.jpg');"
+        ></div>
+        <div class="project-panel__overlay"></div>
+
+        <div class="project-panel__content project-panel__content--right">
+          <div class="project-panel__label">Selected work · 02</div>
+          <h2 class="project-panel__title">TrueLife Home Health</h2>
+          <p class="project-panel__text">
+            A web presence for a healthcare provider that balances trust,
+            clarity and accessibility – built to support patients and families.
+          </p>
+          <a
+            href="https://truelifehomehealth.ae"
+            target="_blank"
+            class="project-panel__link"
+          >
+            Visit site <span>↗</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Panel 3: center text -->
+      <section class="project-panel project-panel--center" data-panel="3">
+        <div
+          class="project-panel__bg"
+          style="background-image: url('images/ADHD1.jpg');"
+        ></div>
+        <div class="project-panel__overlay"></div>
+
+        <div class="project-panel__content project-panel__content--center">
+          <div class="project-panel__label">Selected work · 03</div>
+          <h2 class="project-panel__title">Fusion Foodie</h2>
+          <p class="project-panel__text">
+            A fusion cuisine concept site with bold visuals,
+            smooth transitions and clear paths to reservations.
+          </p>
+          <a
+            href="https://fusionfoodie.ae"
+            target="_blank"
+            class="project-panel__link"
+          >
+            Visit site <span>↗</span>
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== EXPERIENCE SECTION (MY JOURNEY) ========== -->
+    <section class="experience-section" id="journey">
+      <div class="experience-inner">
+        <h2 class="experience-title">MY JOURNEY</h2>
+
+        <div class="experience-grid">
+          <div class="experience-card">
+            <h3 class="exp-role">Associate System Engineer</h3>
+            <p class="exp-company">ISNIA Technologies • Master Data Management (STEP)</p>
+            <p class="exp-duration">2024 — Present</p>
+          </div>
+
+          <div class="experience-card">
+            <h3 class="exp-role">Web Development Intern</h3>
+            <p class="exp-company">Nexus Infotech</p>
+            <p class="exp-duration">2023 — 2024</p>
+          </div>
+
+          <div class="experience-card">
+            <h3 class="exp-role">Freelance Web &amp; Design</h3>
+            <p class="exp-company">Restaurant, healthcare &amp; product sites</p>
+            <p class="exp-duration">2022 — Ongoing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== DESIGN PROCESS – HORIZONTAL SCROLL CARDS ========== -->
+    <section class="process-section" id="process">
+      <div class="process-section__inner">
+        <div class="process-section__header">
+          <div class="process-section__label">My</div>
+          <h2 class="process-section__title">DESIGN PROCESS</h2>
+          <div class="process-section__copy">
+            Each project is different, but my process stays clear and repeatable.
+            Here’s how I move from idea to shipped product.
+          </div>
+        </div>
+
+        <!-- Horizontal scroll track -->
+        <div class="process-scroll-wrapper">
+          <div class="process-scroll-track" id="processTrack">
+            <article class="process-card">
+              <div class="process-card__step">01</div>
+              <h3 class="process-card__title">Define</h3>
+              <p class="process-card__text">
+                Understand goals, constraints and users. Clarify what success looks like before design.
+              </p>
+              <div class="process-card__tags">
+                <span>Requirements</span><span>User flows</span><span>Scope</span>
+              </div>
+            </article>
+
+            <article class="process-card">
+              <div class="process-card__step">02</div>
+              <h3 class="process-card__title">Ideate</h3>
+              <p class="process-card__text">
+                Explore different layouts, structures and content hierarchies that solve the problem.
+              </p>
+              <div class="process-card__tags">
+                <span>Wireframes</span><span>Content map</span><span>UX patterns</span>
+              </div>
+            </article>
+
+            <article class="process-card">
+              <div class="process-card__step">03</div>
+              <h3 class="process-card__title">Prototype</h3>
+              <p class="process-card__text">
+                Turn ideas into interactive views, test flows and refine micro-interactions.
+              </p>
+              <div class="process-card__tags">
+                <span>UI design</span><span>Interactions</span><span>Feedback</span>
+              </div>
+            </article>
+
+            <article class="process-card">
+              <div class="process-card__step">04</div>
+              <h3 class="process-card__title">Build</h3>
+              <p class="process-card__text">
+                Implement clean, responsive front-end with integrations that keep data in sync.
+              </p>
+              <div class="process-card__tags">
+                <span>HTML/CSS/JS</span><span>APIs</span><span>STEP / MDM</span>
+              </div>
+            </article>
+
+            <article class="process-card">
+              <div class="process-card__step">05</div>
+              <h3 class="process-card__title">Iterate</h3>
+              <p class="process-card__text">
+                Improve based on real usage, fix pain points and polish the experience.
+              </p>
+              <div class="process-card__tags">
+                <span>Analytics</span><span>Refinement</span><span>Support</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER / CTA (DROP ME A LINE) ========== -->
+    <section class="footer-cta" id="footer-contact">
+      <div class="footer-cta__inner">
+        <div class="footer-cta__top">
+          <div class="footer-cta__label">READY TO WORK TOGETHER?</div>
+          <div class="footer-cta__availability">
+            <span class="footer-cta__availability-label">
+              AVAILABLE FOR NEW PROJECTS
+            </span>
+            <span class="footer-cta__availability-meta">
+              From <strong>2025</strong> onwards
+            </span>
+          </div>
+        </div>
+
+        <div class="footer-cta__headline-wrap">
+          <h2 class="footer-cta__headline">
+            <span class="footer-cta__headline-main">DROP ME A LINE</span>
+          </h2>
+        </div>
+
+        <div class="footer-cta__divider"></div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom__left">
+            <div class="footer-bottom__brand">YUVANTH</div>
+            <p class="footer-bottom__made">
+              Crafted in India with <span class="footer-bottom__heart">♥</span>
+            </p>
+          </div>
+
+          <div class="footer-bottom__right">
+            <div class="footer-bottom__group">
+              <div class="footer-bottom__title">SITEMAP</div>
+              <a href="#hero" class="footer-bottom__link">Home</a>
+              <a href="#projects" class="footer-bottom__link">Works</a>
+              <a href="#journey" class="footer-bottom__link">Journey</a>
+              <a href="#process" class="footer-bottom__link">Process</a>
+              <a href="#footer-contact" class="footer-bottom__link">Contact</a>
+            </div>
+            <div class="footer-bottom__group">
+              <div class="footer-bottom__title">SOCIAL</div>
+              <a href="#" class="footer-bottom__link">LinkedIn</a>
+              <a href="#" class="footer-bottom__link">GitHub</a>
+              <a href="#" class="footer-bottom__link">Instagram</a>
+            </div>
+            <div class="footer-bottom__group">
+              <div class="footer-bottom__title">CONTACT</div>
+              <a href="mailto:youremail@example.com" class="footer-bottom__link">
+                youremail@example.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================== SCRIPTS =================== -->
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="main.js"></script>
+
+  <!-- place script after page content (before closing body) -->
+  <script>
+    (function () {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const wrapper = document.querySelector('.process-scroll-wrapper');
+      const track = document.getElementById('processTrack');
+      if (!wrapper || !track) return;
+
+      // Ensure track uses flex for layout (in case stylesheet missing)
+      track.style.display = 'flex';
+      Array.from(track.children).forEach(c => c.style.flex = '0 0 auto');
+
+      // Duplicate content once to make a continuous loop (cards repeated)
+      track.innerHTML = track.innerHTML + track.innerHTML;
+
+      // Calculate reset point (half of the full scrollable width)
+      let resetAt = track.scrollWidth / 2;
+
+      // Animation state
+      let pos = 0;
+      const speed = 60; // pixels per second (adjust to taste)
+      let last = performance.now();
+
+      function step(now) {
+        const dt = (now - last) / 1000;
+        last = now;
+
+        pos += speed * dt;
+        if (pos >= resetAt) {
+          // keep value bounded for precision
+          pos -= resetAt;
+        }
+
+        track.style.transform = 'translateX(' + (-pos) + 'px)';
+        requestAnimationFrame(step);
+      }
+
+      // Wait one frame so scrollWidth is correct after DOM changes, then start
+      requestAnimationFrame(() => {
+        resetAt = track.scrollWidth / 2;
+        last = performance.now();
+        requestAnimationFrame(step);
+      });
+
+      // Recompute sizes on resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          resetAt = track.scrollWidth / 2;
+        }, 150);
+      });
+    })();
+  </script>
+</body>
+</html>
